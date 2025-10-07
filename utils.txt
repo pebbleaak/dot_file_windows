@@ -1,0 +1,4 @@
+ scoop install coreutils findutils grep gawk sed diffutils less erdtree tar gzip bzip2 unzip
+
+ scoop install ripgrep fd bat exa dust duf tldr hyperfine
+
