@@ -75,5 +75,12 @@ require("lsp_signature").setup({
   bind = true,
   hint_enable = true,
   handler_opts = { border = "rounded" },
+  -- these were added extra
+  floating_window = true,           -- use popup only
+ -- floating_window_above_cur_line = true,
+ -- floating_window_off_x = 1,        -- slight offset
+  --close_timeout = 1500,             -- auto-close after 1s idle
+ -- transparency = 15,        
+--  toggle_key = "<C-h>"
 })
 
