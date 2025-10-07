@@ -39,7 +39,11 @@ require("mason-lspconfig").setup({
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 vim.lsp.config("clangd", {
-  cmd = { "clangd", "--background-index", "--clang-tidy" },
+    -- "--completion-style=detailed",
+--    "--all-scopes-completion=false",
+  --  "--header-insertion=never",
+   -- "--limit-results=50",
+  cmd = { "clangd", "--background-index", "--clang-tidy", "--completion-style=detailed", "--all-scopes-completion=false", "--header-insertion=never", "--limit-results=50" },
   filetypes = { "c", "cpp", "objc", "objcpp" },
   single_file_support = true,
   capabilities = capabilities,
@@ -49,13 +53,18 @@ vim.lsp.config("clangd", {
 local cmp = require("cmp")
 
 cmp.setup({
+ -- completion = {autocomplete = false},
+  performance = {
+    max_view_entries = 10,  -- new in cmp 0.10+, limits visible items
+  },
   mapping = cmp.mapping.preset.insert({
+    ["<C-y>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
-    { name = "buffer" },
-    { name = "path" },
+  --  { name = "buffer" },
+   -- { name = "path" },
   }),
 })
 
@@ -67,10 +76,4 @@ require("lsp_signature").setup({
   hint_enable = true,
   handler_opts = { border = "rounded" },
 })
-
--- 6️⃣ Keymaps
-vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show docs" })
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
