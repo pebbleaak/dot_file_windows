@@ -109,5 +109,36 @@ return {
     vim.cmd.colorscheme("kanagawa")
   end,
 
+},
+
+-- Core LSP
+{
+  -- Core LSP
+  { "neovim/nvim-lspconfig" },
+
+  -- Mason: portable LSP/DAP installer
+  {
+    "williamboman/mason.nvim",
+    config = true,
+  },
+
+  -- Bridge Mason with lspconfig
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "mason.nvim", "nvim-lspconfig" },
+  },
+
+  -- Autocompletion
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+    },
+  },
+
+  -- Function signature popups
+  { "ray-x/lsp_signature.nvim" },
 }
 }
