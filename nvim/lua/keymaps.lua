@@ -37,3 +37,15 @@ vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'Fin
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>',  { desc = 'Grep text' })
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>',    { desc = 'List buffers' })
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>',  { desc = 'Help tags' })
+
+
+
+-- Open terminal in a horizontal split
+vim.keymap.set('n', '<leader>t', ':split term://bash<CR>', { desc = 'Open terminal' })
+
+-- Or open in a vertical split
+vim.keymap.set('n', '<leader>vt', ':vsplit term://bash<CR>', { desc = 'Vertical terminal' })
+
+-- Escape terminal mode quickly
+--vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode', noremap = true, silent = true })

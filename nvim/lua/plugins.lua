@@ -178,28 +178,28 @@ return {
   end
 },
 
-{
-  'akinsho/toggleterm.nvim',
-  version = "*",
-  config = function()
-    require('toggleterm').setup {
-      size = 15,
-      open_mapping = [[<c-\>]],  -- toggle terminal with Ctrl+\
-      hide_numbers = true,
-      shade_terminals = true,
-      shading_factor = 2,
-      start_in_insert = true,
-      persist_size = true,
-      direction = 'horizontal',  -- also supports 'vertical', 'float'
-      close_on_exit = true,
-      shell = vim.o.shell,
-    }
+--{
+--  'akinsho/toggleterm.nvim',
+ -- version = "*",
+--  config = function()
+ --   require('toggleterm').setup {
+  --    size = 15,
+   --   open_mapping = [[<c-\>]],  -- toggle terminal with Ctrl+\
+   --   hide_numbers = true,
+    --  shade_terminals = true,
+    --  shading_factor = 2,
+    --  start_in_insert = true,
+    --  persist_size = true,
+    --  direction = 'horizontal',  -- also supports 'vertical', 'float'
+    --  close_on_exit = true,
+    --  shell = vim.o.shell,
+   -- }
 
     -- Optional keymaps for floating and vertical terminals
-    vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { desc = 'Floating terminal' })
-    vim.keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical<CR>', { desc = 'Vertical terminal' })
-  end
-}
+   -- vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { desc = 'Floating terminal' })
+   -- vim.keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical<CR>', { desc = 'Vertical terminal' })
+ -- end
+--}
 
 
 
