@@ -28,5 +28,7 @@ vim.keymap.set("n", "<leader>r", ":!python %<CR>", { noremap = true, silent = fa
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show docs" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = "Go to Implementation" })
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to Declaration" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 

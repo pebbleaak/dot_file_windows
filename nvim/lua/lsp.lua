@@ -58,13 +58,13 @@ cmp.setup({
     max_view_entries = 10,  -- new in cmp 0.10+, limits visible items
   },
   mapping = cmp.mapping.preset.insert({
-    ["<C-y>"] = cmp.mapping.complete(),
+  --  ["<C-y>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
+    { name = "path" },
   --  { name = "buffer" },
-   -- { name = "path" },
   }),
 })
 
