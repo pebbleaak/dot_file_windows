@@ -7,6 +7,12 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
+-- Window swapping / movement (leader-based, reliable)
+vim.keymap.set('n', '<leader>wh', '<C-w>H', { desc = 'Move window to left' })
+vim.keymap.set('n', '<leader>wj', '<C-w>J', { desc = 'Move window to bottom' })
+vim.keymap.set('n', '<leader>wk', '<C-w>K', { desc = 'Move window to top' })
+vim.keymap.set('n', '<leader>wl', '<C-w>L', { desc = 'Move window to right' })
+vim.keymap.set('n', '<leader>wr', '<C-w>r', { desc = 'Rotate windows' })
 
 
 -- Insert blank line below (stay in Normal mode)
