@@ -32,3 +32,8 @@ vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = "Go to Implementa
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to Declaration" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
+-- Telescop
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'Find files' })
+vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>',  { desc = 'Grep text' })
+vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>',    { desc = 'List buffers' })
+vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>',  { desc = 'Help tags' })
