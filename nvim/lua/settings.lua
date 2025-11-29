@@ -1,16 +1,7 @@
 -- ~/.config/nvim/lua/settings.lua
 
-
-if vim.loop.os_uname().sysname == "Windows_NT" then
-  vim.opt.shell = '"C:\\Program Files\\PowerShell\\7\\pwsh.exe"'
- -- vim.opt.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command'
-  vim.opt.shellquote = ''
-  vim.opt.shellxquote = ''
-  vim.opt.shellpipe = '| Out-File -Encoding UTF8 %s'
-  vim.opt.shellredir = '| Out-File -Encoding UTF8 %s'
-  vim.opt.termguicolors = true
-end
-
+-- Terminal
+vim.opt.shell = "/usr/bin/zsh"
 -- General settings
 vim.opt.breakindent = true
 vim.opt.showmode = true

@@ -50,8 +50,8 @@ return {
     -- Gruvbox Material
   {
     "sainnhe/gruvbox-material",
-    lazy = false,
-    priority = 1000,
+    lazy = true,
+   -- priority = 1000,
     config = function()
       vim.cmd.colorscheme("gruvbox-material")
     end,
@@ -61,6 +61,10 @@ return {
   {
     "maxmx03/solarized.nvim",
     lazy = true,
+   -- priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("solarized")
+    end,
   },
 
   -- Tokyo Night
@@ -68,7 +72,7 @@ return {
         {
   "folke/tokyonight.nvim",
   lazy = true,
-  --priority = 1000,
+ -- priority = 1000,
   config = function()
     require("tokyonight").setup({
       style = "moon", -- "storm", "night", "moon", "day"
@@ -85,7 +89,7 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = true,
-  --  priority = 1000,
+   -- priority = 1000,
     config = function()
     require("catppuccin").setup({
       flavour = "mocha",     })
@@ -110,6 +114,32 @@ return {
   end,
 
 },
+{
+  "Mofiqul/dracula.nvim",
+  lazy = true,
+--  priority = 1000,
+  config = function()
+    vim.cmd.colorscheme("dracula")
+  end,
+},
+
+{
+  "sonph/onehalf",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    -- 1. Add the `vim` subfolder to runtimepath (cross-platform)
+    local onehalf_vim = vim.fn.stdpath("data") .. "/lazy/onehalf/vim"
+    vim.opt.rtp:append(onehalf_vim)
+
+    -- 2. Now the colorscheme is visible
+    vim.cmd.colorscheme("onehalfdark")
+  end,
+},
+
+
+
+
 
 -- Core LSP
 {
@@ -194,7 +224,7 @@ return {
       },
     }
   end
-}
+},
 --{
 --  'akinsho/toggleterm.nvim',
  -- version = "*",
