@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins')
 require('keymaps')
-requie('python')
+require('python')
 require('lsp')
 
 require('telescope').setup{
