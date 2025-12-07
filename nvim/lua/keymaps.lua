@@ -27,7 +27,10 @@ vim.keymap.set("n", "<leader>f", ":!black %<CR>", { noremap = true, silent = tru
 
 -- Run current Python file using system python or venv
 vim.keymap.set("n", "<leader>r", ":!python %<CR>", { noremap = true, silent = false })
-
+-- Open diagnostics popup
+vim.keymap.set("n", "<leader>cd", function()
+  vim.diagnostic.open_float(nil, { focus = false, border = "rounded" })
+end, { desc = "Show Line Diagnostics" })
 
 
 -- 6️⃣ Keymaps
