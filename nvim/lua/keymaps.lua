@@ -60,33 +60,33 @@ vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>',  { desc = 'Hel
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode', noremap = true, silent = true })
 
 -- Open terminal in a horizontal split using Neovim’s current shell (zsh, etc.)
-vim.keymap.set('n', '<leader>t', function()
-  vim.cmd('split term://' .. vim.o.shell)
-end, { desc = 'Open terminal' })
+--vim.keymap.set('n', '<leader>t', function()
+ -- vim.cmd('split term://' .. vim.o.shell)
+--end, { desc = 'Open terminal' })
 
 -- Open terminal in a vertical split using the same shell
-vim.keymap.set('n', '<leader>vt', function()
-  vim.cmd('vsplit term://' .. vim.o.shell)
-end, { desc = 'Vertical terminal' })
+--vim.keymap.set('n', '<leader>vt', function()
+ -- vim.cmd('vsplit term://' .. vim.o.shell)
+--end, { desc = 'Vertical terminal' })
 
 
 -- Make Esc leave terminal mode
-vim.api.nvim_create_autocmd('TermOpen', {
-  pattern = '*',
-  callback = function()
-    vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], {
-      noremap = true,
-      silent = true,
-      buffer = true,
-      desc = 'Exit terminal mode',
-    })
-  end,
-})
+--vim.api.nvim_create_autocmd('TermOpen', {
+--  pattern = '*',
+--  callback = function()
+ --   vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], {
+  --    noremap = true,
+   --   silent = true,
+    --  buffer = true,
+    --  desc = 'Exit terminal mode',
+   -- })
+ -- end,
+--})
 
-vim.api.nvim_create_autocmd('TermOpen', {
-  pattern = '*',
-  command = 'startinsert',
-})
+--vim.api.nvim_create_autocmd('TermOpen', {
+--  pattern = '*',
+--  command = 'startinsert',
+--})
 
 -- Move selected lines up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
@@ -95,3 +95,43 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 
+
+
+-- Set shell to PowerShell (choose one)
+vim.o.shell = "pwsh"
+-- vim.o.shell = "powershell" -- Windows PowerShell (older)
+
+
+vim.keymap.set('n', '<leader>t', ':split | terminal<CR>', {
+  desc = 'Horizontal terminal (PowerShell)',
+})
+
+-- Vertical terminal (Space + v then t)
+vim.keymap.set('n', '<leader>vt', ':vsplit | terminal<CR>', {
+  desc = 'Vertical terminal (PowerShell)',
+})
+
+
+-- Esc leaves terminal mode
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], {
+  desc = 'Exit terminal mode',
+  noremap = true,
+  silent = true,
+})
+
+-- Make Esc work for every terminal buffer + start in insert mode
+vim.api.nvim_create_autocmd('TermOpen', {
+  pattern = '*',
+  callback = function()
+    vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], {
+      noremap = true,
+      silent = true,
+      buffer = true,
+    })
+  end,
+})
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  pattern = '*',
+  command = 'startinsert',
+})
