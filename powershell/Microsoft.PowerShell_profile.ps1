@@ -46,3 +46,31 @@ Set-Alias ps Get-Process
 Set-Alias df Get-Volume
 Set-Alias top Get-Process
 Set-Alias clear Clear-Host
+
+
+function Install-LinuxPromptTools {
+    $manifest = "$env:USERPROFILE\dotfile_windows\winget-linux-tools.txt"
+
+    if (-not (Test-Path $manifest)) {
+        Write-Error "Manifest not found: $manifest"
+        return
+    }
+
+    $packages = Get-Content $manifest | Where-Object { $_ -and $_.Trim() -ne "" }
+
+    foreach ($pkg in $packages) {
+        Write-Host "Installing $pkg via winget..."
+        winget install --id $pkg --source winget `
+            --accept-source-agreements `
+            --accept-package-agreements
+    }
+
+    Write-Host "Done installing Linux-y prompt tools."
+}
+
+
+function Update-ScoopTools {
+    $dest = "$env:USERPROFILE\dotfile_windows\scoop-tools.txt"
+    scoop list | Select-Object -ExpandProperty Name | Sort-Object | Out-File $dest
+    Write-Host "Updated Scoop tool list -> $dest"
+}

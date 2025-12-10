@@ -2,3 +2,8 @@
 
  scoop install ripgrep fd bat exa dust duf tldr hyperfine
 
+
+
+Run the following commands to update winget and scoop manifest
+Update-WingetManifest
+Update-ScoopManifest      # and/or Update-ScoopManifestJson

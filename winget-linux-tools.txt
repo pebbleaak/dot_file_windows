@@ -1,0 +1,4 @@
+JanDeDobbeleer.OhMyPosh
+ajeetdsouza.zoxide
+junegunn.fzf
+sharkdp.bat

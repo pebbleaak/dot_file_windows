@@ -1,0 +1,100 @@
+==========================================
+DOTFILES HELPER — WINGET & SCOOP PACKAGE SETUP
+==========================================
+
+This file explains how to:
+
+1. Update the Winget package manifest
+2. Update the Scoop package manifest
+3. Install all packages on a new machine
+4. Get a list of installed Scoop and Winget tools
+5. Manifest file locations
+
+==========================================
+MANIFEST LOCATIONS
+==========================================
+
+Winget tools manifest:
+    winget-linux-tools.txt
+
+Scoop tools manifest:
+    scoop-tools.txt
+
+These files live in:
+    C:\Users\<USER>\dotfile_windows\
+
+==========================================
+HOW TO GET YOUR CURRENT PACKAGE LISTS
+==========================================
+
+WINGET (only packages installed from winget source):
+    winget list --source winget
+
+WINGET (full list of all installed software, noisy):
+    winget list
+
+SCOOP (everything installed via Scoop):
+    scoop list
+
+==========================================
+UPDATE WINGET TOOL LIST (manual list)
+==========================================
+
+Edit the file:
+    winget-linux-tools.txt
+
+Then install or update everything using:
+    Install-LinuxPromptTools
+
+Reload profile if needed:
+    . $PROFILE
+
+==========================================
+UPDATE SCOOP TOOL LIST
+==========================================
+
+OPTION A — Auto-generate from installed Scoop tools:
+    Update-ScoopTools
+
+This regenerates:
+    scoop-tools.txt
+
+OPTION B — Edit the file manually:
+    scoop-tools.txt
+
+==========================================
+INSTALL ALL WINGET TOOLS ON NEW MACHINE
+==========================================
+
+Make sure your dotfiles folder is available, then run:
+
+    Install-LinuxPromptTools
+
+This installs everything listed in:
+    winget-linux-tools.txt
+
+==========================================
+INSTALL ALL SCOOP TOOLS ON NEW MACHINE
+==========================================
+
+First install Scoop, then run:
+
+    scoop install (Get-Content "$HOME\dotfile_windows\scoop-tools.txt")
+
+This installs every tool listed in:
+    scoop-tools.txt
+
+==========================================
+NOTES
+==========================================
+
+• We do NOT use “winget export” to generate manifests (includes unwanted apps)
+• Winget uses a curated list: winget-linux-tools.txt
+• Scoop list can be auto-updated or manually edited
+• Update-ScoopTools recreates your list from real Scoop installs
+• Install-LinuxPromptTools and Scoop install commands make setup reproducible
+• Edit the manifest files whenever you add/remove tools
+
+==========================================
+END OF FILE
+==========================================
