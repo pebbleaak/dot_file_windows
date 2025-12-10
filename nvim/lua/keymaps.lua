@@ -48,6 +48,8 @@ vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>',    { desc = 'Lis
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>',  { desc = 'Help tags' })
 
 
+vim.keymap.set("n", "<leader>hS", ":split ", { desc = "Horizontal split with file" })
+vim.keymap.set("n", "<leader>vS", ":vsplit ", { desc = "Vertical split with file" })
 
 -- Open terminal in a horizontal split
 --vim.keymap.set('n', '<leader>t', ':split term://bash<CR>', { desc = 'Open terminal' })
