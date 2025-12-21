@@ -1,53 +1,69 @@
 # ────────────────────────────────────────────────
-# PowerShell 7 Beautified Profile  (dotted from dotfile_windows)
+# PowerShell 7 Beautified Profile (dotfile_windows)
+# Clean • Modern • Linux-like • Conflict-safe
 # ────────────────────────────────────────────────
 
-# 1️⃣  Prompt – Oh My Posh
-#  Install via:  winget install JanDeDobbeleer.OhMyPosh -s winget
-oh-my-posh init pwsh --config "$env:USERPROFILE\dotfile_windows\powershell\paradox.omp.json" | Invoke-Expression
+# 1️⃣ Prompt – Oh My Posh
+# Install via: winget install JanDeDobbeleer.OhMyPosh -s winget
+if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
+    oh-my-posh init pwsh --config "$env:USERPROFILE\dotfile_windows\powershell\paradox.omp.json" | Invoke-Expression
+}
 
-# 2️⃣  Command-line Experience – PSReadLine
-Import-Module PSReadLine
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle ListView
-Set-PSReadLineOption -EditMode Windows
-Set-PSReadLineOption -BellStyle None
+# 2️⃣ Command-line Experience – PSReadLine
+if (Get-Module -ListAvailable PSReadLine) {
+    Import-Module PSReadLine
+    Set-PSReadLineOption -PredictionSource History
+    Set-PSReadLineOption -PredictionViewStyle ListView
+    Set-PSReadLineOption -EditMode Windows
+    Set-PSReadLineOption -BellStyle None
+}
 
-# 3️⃣  Helpful Aliases
-Set-Alias ll Get-ChildItem
-Set-Alias la "Get-ChildItem -Force"
-Set-Alias cat bat
-Set-Alias vim nvim
-Set-Alias grep Select-String
+# 3️⃣ Core navigation & listing (PowerShell-safe)
+function ls { Get-ChildItem @args }
+function ll { Get-ChildItem -Force @args }
+function la { Get-ChildItem -Force @args }
+function clear { Clear-Host }
+
+# 4️⃣ Pretty listing (eza) — explicit on purpose
+if (Get-Command eza -ErrorAction SilentlyContinue) {
+    function lz { eza --group-directories-first --icons @args }
+}
+
+# 5️⃣ Text & editor tools (only if installed)
+if (Get-Command bat  -ErrorAction SilentlyContinue) { function cat { bat @args } }
+if (Get-Command nvim -ErrorAction SilentlyContinue) { Set-Alias vim nvim }
+
+# grep → ripgrep if available, else PowerShell fallback
+if (Get-Command rg -ErrorAction SilentlyContinue) {
+    function grep { rg @args }
+} else {
+    Set-Alias grep Select-String
+}
+
+# Common helpers
+Set-Alias ps  Get-Process
+Set-Alias df  Get-Volume
+Set-Alias top Get-Process
 Set-Alias clr Clear-Host
 
-# 4️⃣  fzf + zoxide Integration
-#  Install via: winget install junegunn.fzf ; winget install ajeetdsouza.zoxide
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
+# 6️⃣ fzf + zoxide
+# Install via: winget install junegunn.fzf ; winget install ajeetdsouza.zoxide
+if (Get-Command zoxide -ErrorAction SilentlyContinue) {
+    Invoke-Expression (& { (zoxide init powershell | Out-String) })
+}
 
-# 5️⃣  Prompt Colors for output consistency
-$PSStyle.FileInfo.Directory = "`e[38;5;81m"
+# 7️⃣ Output color tuning
+$PSStyle.FileInfo.Directory  = "`e[38;5;81m"
 $PSStyle.FileInfo.Executable = "`e[38;5;208m"
 
-# 6️⃣  Greeting
+# 8️⃣ Greeting
 $version = $PSVersionTable.PSVersion
 Write-Host ""
-Write-Host "🌟  PowerShell $($version.Major).$($version.Minor) loaded from dotfile_windows" -ForegroundColor Cyan
+Write-Host "🌟  PowerShell $($version.Major).$($version.Minor) loaded" -ForegroundColor Cyan
 Write-Host "📂  Profile: $PROFILE" -ForegroundColor DarkGray
 Write-Host ""
 
-# ----- Linux-style Aliases -----
-Set-Alias ls Get-ChildItem
-Set-Alias ll "Get-ChildItem -Force"
-Set-Alias la "Get-ChildItem -Force"
-Set-Alias cat bat
-Set-Alias grep Select-String
-Set-Alias ps Get-Process
-Set-Alias df Get-Volume
-Set-Alias top Get-Process
-Set-Alias clear Clear-Host
-
-
+# ── Helper functions ────────────────────────────
 function Install-LinuxPromptTools {
     $manifest = "$env:USERPROFILE\dotfile_windows\winget-linux-tools.txt"
 
@@ -65,12 +81,16 @@ function Install-LinuxPromptTools {
             --accept-package-agreements
     }
 
-    Write-Host "Done installing Linux-y prompt tools."
+    Write-Host "Done installing Linux-style tools."
 }
 
-
 function Update-ScoopTools {
+    if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+        Write-Error "scoop not found on PATH."
+        return
+    }
+
     $dest = "$env:USERPROFILE\dotfile_windows\scoop-tools.txt"
     scoop list | Select-Object -ExpandProperty Name | Sort-Object | Out-File $dest
-    Write-Host "Updated Scoop tool list -> $dest"
+    Write-Host "Updated Scoop tool list → $dest"
 }
