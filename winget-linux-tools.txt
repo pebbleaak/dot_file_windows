@@ -2,3 +2,34 @@ JanDeDobbeleer.OhMyPosh
 ajeetdsouza.zoxide
 junegunn.fzf
 sharkdp.bat
+
+Git — Git.Git
+
+PowerShell 7 — Microsoft.PowerShell
+
+Windows Terminal — Microsoft.WindowsTerminal
+
+Oh My Posh — JanDeDobbeleer.OhMyPosh
+
+fzf — junegunn.fzf
+
+zoxide — ajeetdsouza.zoxide
+
+bat — sharkdp.bat
+
+7-Zip (CLI-friendly archiving like Linux tools) — 7zip.7zip
+
+MSYS2 (GNU userland / bash toolchain on Windows) — ARP\User\X64\{eff5848a-0cb1-40e1-8e8a-446dbe565952}
+
+Windows Subsystem for Linux — MicrosoftCorporationII.WindowsSubsystemForLinux
+
+7zip.7zip
+Git.Git
+JanDeDobbeleer.OhMyPosh
+Microsoft.PowerShell
+Microsoft.WSL
+Microsoft.WindowsTerminal
+MSYS2.MSYS2
+ajeetdsouza.zoxide
+junegunn.fzf
+sharkdp.bat

@@ -84,6 +84,7 @@ function Install-LinuxPromptTools {
     Write-Host "Done installing Linux-style tools."
 }
 
+
 function Update-ScoopTools {
     if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
         Write-Error "scoop not found on PATH."
@@ -91,6 +92,13 @@ function Update-ScoopTools {
     }
 
     $dest = "$env:USERPROFILE\dotfile_windows\scoop-tools.txt"
-    scoop list | Select-Object -ExpandProperty Name | Sort-Object | Out-File $dest
-    Write-Host "Updated Scoop tool list → $dest"
+
+    scoop list |
+        Select-String -NotMatch '^(Name\s+Version|----\s+-------|\s*$)' |
+        ForEach-Object { ($_ -split '\s+')[0].Trim() } |
+        Where-Object { $_ -ne "" } |
+        Sort-Object -Unique |
+        Set-Content -Encoding utf8 $dest
+
+    Write-Host "Updated Scoop tool list -> $dest"
 }
