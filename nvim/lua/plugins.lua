@@ -16,7 +16,7 @@ return {
       },
        formatters = {
       black = {
-        command = "black",
+ command = "black",
         args = { "--quiet", "-" }, -- read from stdin
         stdin = true,
       },
